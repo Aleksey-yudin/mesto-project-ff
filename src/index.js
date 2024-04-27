@@ -36,9 +36,7 @@ function openImg (event) {
 };
 
 // Отправка формы
-function formSubmit(evt) {
-  const profileTitle = document.querySelector('.profile__title');
-  const profileDescription = document.querySelector('.profile__description');
+function formAddCardSubmit(evt) {
   evt.preventDefault();
 
   const name = editName.value;
@@ -71,7 +69,7 @@ initialCards.forEach(function(cardItem) {
 buttonProfile.addEventListener('click', openProfile);
 buttonAddProfile.addEventListener('click', openPopupButton);
 
-profileEdit.addEventListener('submit', formSubmit);
+profileEdit.addEventListener('submit', formAddCardSubmit);
 
 if (popupButtonClose.length > 0) {
   popupButtonClose.forEach(button => {
