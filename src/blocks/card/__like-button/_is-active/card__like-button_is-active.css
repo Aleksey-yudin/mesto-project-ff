@@ -1,3 +1,14 @@
 .card__like-button_is-active {
   background: transparent url('../../../../images/like-active.svg') no-repeat;
 }
+
+.card__like {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__like-quantity {
+  color: #000;
+  font-size: 13px;
+  text-align: center;
+}
