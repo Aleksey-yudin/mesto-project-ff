@@ -1,1 +1,6 @@
-https://github.com/Aleksey-yudin/mesto-project-ff.git
+https://aleksey-yudin.github.io/mesto-project-ff/
+
+# MESTO
+## Проектная работа по 7 спринту.
+
+**Посмотреть:** [Нажми на меня](https://aleksey-yudin.github.io/mesto-project-ff/)
