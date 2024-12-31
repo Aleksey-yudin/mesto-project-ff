@@ -65,11 +65,10 @@ function handleFormProfileEdit(evt) {
     profileDescription.textContent = users.about;
     users.name,
     users.about
+    closePopup(popupEdit);
   })
   .catch((err) => console.log(err))
   .finally(() => setSubmitButtonText(evt, 'Сохранить'));
-
-  closePopup(popupEdit);
 };
 
 profileForm.addEventListener('submit', handleFormProfileEdit);
@@ -86,12 +85,11 @@ const addCardPage = (evt, userId) => {
   addCards(newCardData)
   .then((card) => {
     renderCard(card, userId);
+    cardForm.reset();
+    closePopup(popupNewCard);
   })
-.catch((err) => console.log(err))
-.finally(() => setSubmitButtonText(evt, 'Сохранить'));
-
-  cardForm.reset();
-  closePopup(popupNewCard);
+  .catch((err) => console.log(err))
+  .finally(() => setSubmitButtonText(evt, 'Сохранить'));
 };
 
 cardForm.addEventListener('submit', (evt) => addCardPage(evt, userId));
@@ -101,15 +99,15 @@ const handleFormAvatar = (evt) => {
   evt.preventDefault();
   setSubmitButtonText(evt, 'Сохранение...');
   
-  updateAvatar(linkAvatarInput.value).then((link) => {
+  updateAvatar(linkAvatarInput.value)
+  .then((link) => {
     profileImage.style.backgroundImage = `url(${link.avatar})`;
     link.avatar
+    formAvatar.reset();
+    closePopup(popupAvatar);
   })
   .catch((err) => console.log(err))
   .finally(() => setSubmitButtonText(evt, 'Сохранить'));
-  
-  formAvatar.reset();
-  closePopup(popupAvatar);
 };
 
 formAvatar.addEventListener('submit', handleFormAvatar);
@@ -118,9 +116,12 @@ formAvatar.addEventListener('submit', handleFormAvatar);
 const handleCardDelete = (evt) => {
   evt.preventDefault();
 
-  deleteCard(idCardForDelete).then(deleteButton(evtCardDelete))
+  deleteCard(idCardForDelete)
+  .then(() => {
+    deleteButton(evtCardDelete);
+    closePopup(popupDelete);
+  })
   .catch((err) => console.log(err));
-  closePopup(popupDelete);
 };
 
 formDelete.addEventListener('submit', handleCardDelete);
@@ -133,7 +134,7 @@ const renderCard = (card, userId) => {
     evtCardDelete = cardDelete;
   }
   const newCard = createCard(card, openImages, likeCallback, userId, handleDelete);
-  placesList.prepend(newCard);
+  placesList.append(newCard);
 };
 
 

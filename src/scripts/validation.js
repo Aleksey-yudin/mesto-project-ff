@@ -76,6 +76,7 @@ const clearValidation = (formElement, {submitButtonSelector, inactiveButtonClass
 
   inputList.forEach((inputElement) => {
     hideInputError({ formElement, inputElement, inputErrorClass, errorClass});
+    inputElement.setCustomValidity("");
   });
 
   toggleButtonState({inputList, submitButtonElement, inactiveButtonClass});
