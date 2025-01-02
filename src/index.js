@@ -42,7 +42,8 @@ Promise.all([getInitalUsers(), getInitialCards()])
     document.querySelector('.profile__image').style.backgroundImage = `url(${user.avatar})`;
 
     cards.forEach((card) => {
-      renderCard(card, userId);
+      const cardElement = renderCard(card, userId);
+      placesList.append(cardElement);
     });
   return userId;
 })
@@ -84,7 +85,8 @@ const addCardPage = (evt, userId) => {
 
   addCards(newCardData)
   .then((card) => {
-    renderCard(card, userId);
+    const cardElement = renderCard(card, userId);
+    placesList.prepend(cardElement);
     cardForm.reset();
     closePopup(popupNewCard);
   })
@@ -134,7 +136,8 @@ const renderCard = (card, userId) => {
     evtCardDelete = cardDelete;
   }
   const newCard = createCard(card, openImages, likeCallback, userId, handleDelete);
-  placesList.append(newCard);
+  return newCard;
+  //placesList.append(newCard);
 };
 
 
